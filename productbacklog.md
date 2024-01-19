@@ -6,4 +6,4 @@
 5. a database which stores the user's progress (number of sets and reps for a specific workout)
 6. a timer for user to track their rest time
 7. notifications for when the timer ends
-8. 
+
