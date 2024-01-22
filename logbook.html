@@ -88,10 +88,16 @@
 
     <div class="input-fields">
         <p>
-            <label>Username : <input id="name" /></label>
+            <label>Workout Name: <input id="workoutName" /></label>
         </p>
         <p>
-            <label>Password : <input id="password" /></label>
+            <label>Sets: <input id="sets" type="number" /></label>
+        </p>
+        <p>
+            <label>Reps: <input id="reps" type="number" /></label>
+        </p>
+        <p>
+            <label>Date: <input id="date" type="date" /></label>
         </p>
         <p>
             <button onclick="fun()">Submit</button>
@@ -105,23 +111,32 @@
 
     <script>
         function toggleInputFields() {
-            // Toggle the display of the input fields
             const inputFields = document.querySelector('.input-fields');
             inputFields.style.display = inputFields.style.display === 'none' ? 'block' : 'none';
         }
 
         function fun() {
-            localStorage.setItem('name', document.getElementById('name').value)
-            localStorage.setItem('password', document.getElementById('password').value);
-            document.getElementById("ele").innerHTML = '<h3>name: ' +
-            localStorage.getItem("name") + '</h3><h3>Password: ' +
-            localStorage.getItem('password') + '</h3>';
+            let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+            storedData.push({
+                workoutName: document.getElementById('workoutName').value,
+                sets: document.getElementById('sets').value,
+                reps: document.getElementById('reps').value,
+                date: document.getElementById('date').value
+            });
+            localStorage.setItem('workoutData', JSON.stringify(storedData));
+            document.getElementById('workoutName').value = '';
+            document.getElementById('sets').value = '';
+            document.getElementById('reps').value = '';
+            document.getElementById('date').value = '';
         }
 
         function fun2() {
-            document.getElementById("ele").innerHTML = '<h3>name: '
-                + localStorage.getItem("name") + '</h3><h3>Password: ' +
-                localStorage.getItem('password') + '</h3>';
+            let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+            let detailsHTML = '';
+            storedData.forEach(out => {
+                detailsHTML += `<h3>Workout Name: ${out.workoutName}, Sets: ${out.sets}, Reps: ${out.reps}, Date: ${out.date}</h3>`;
+            });
+            document.getElementById("ele").innerHTML = detailsHTML;
         }
     </script>
 </body>
