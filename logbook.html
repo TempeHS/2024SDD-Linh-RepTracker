@@ -21,7 +21,7 @@
         .circle-button {
             width: 40px;
             height: 40px;
-            background-color: 	#8ba888;
+            background-color: #8ba888;
             border: 2px solid black;
             border-radius: 50%;
             display: flex;
@@ -42,7 +42,6 @@
             font-size: 22px;
             font-weight: bold;
             margin: 0; 
-             
         }
 
         header {
@@ -64,20 +63,50 @@
         }
 
         .input-fields {
+            position: fixed;
+            top: 60px; /* Adjust this value as needed */
+            right: 10px;
             display: none;
+            z-index: 2;
         }
 
         #ele {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            padding-top: 100px; 
+            box-sizing: border-box;
         }
 
         .detail-box {
             border: 2px solid #8ba888;
             padding: 10px;
             margin: 10px;
-            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #8ba888;
+            border: 2px solid black;
+            color: black;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            margin-left: auto;
+            
         }
 
         @media (min-width: 767px) {
@@ -126,6 +155,13 @@
             inputFields.style.display = inputFields.style.display === 'none' ? 'block' : 'none';
         }
 
+        function removeEntry(index) {
+            let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+            storedData.splice(index, 1);
+            localStorage.setItem('workoutData', JSON.stringify(storedData));
+            fun2();
+        }
+
         function fun() {
             let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
             storedData.push({
@@ -139,14 +175,15 @@
             document.getElementById('sets').value = '';
             document.getElementById('reps').value = '';
             document.getElementById('date').value = '';
-            fun2();  
+            fun2();  // Automatically display details after submission
         }
 
         function fun2() {
             let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
             let detailsHTML = '';
-            storedData.forEach(out => {
+            storedData.forEach((out, index) => {
                 detailsHTML += `<div class="detail-box">
+                                    <button class="delete-button" onclick="removeEntry(${index})">-</button>
                                     <p>Workout Name: ${out.workoutName}</p>
                                     <p>Sets: ${out.sets}</p>
                                     <p>Reps: ${out.reps}</p>
@@ -156,7 +193,7 @@
             document.getElementById("ele").innerHTML = detailsHTML;
         }
 
-        
+        // Automatically display details when the page loads
         window.onload = function() {
             fun2();
         };
