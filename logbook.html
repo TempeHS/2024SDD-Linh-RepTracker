@@ -64,7 +64,7 @@
 
         .input-fields {
             position: fixed;
-            top: 60px; /* Adjust this value as needed */
+            top: 60px; 
             right: 10px;
             display: none;
             z-index: 2;
@@ -86,12 +86,12 @@
             flex-direction: column;
             align-items: flex-start;
             position: relative;
-            word-wrap: break-word;
+            word-wrap: break-word; 
         }
 
         .delete-button {
             position: absolute;
-            top: 5px;
+            bottom: 5px;
             right: 5px;
             background-color: #8ba888;
             border: 2px solid black;
@@ -105,8 +105,6 @@
             align-items: center;
             justify-content: center;
             display: flex;
-            margin-left: auto;
-            
         }
 
         @media (min-width: 767px) {
@@ -175,7 +173,7 @@
             document.getElementById('sets').value = '';
             document.getElementById('reps').value = '';
             document.getElementById('date').value = '';
-            fun2();  // Automatically display details after submission
+            fun2();  
         }
 
         function fun2() {
@@ -193,7 +191,7 @@
             document.getElementById("ele").innerHTML = detailsHTML;
         }
 
-        // Automatically display details when the page loads
+        
         window.onload = function() {
             fun2();
         };
