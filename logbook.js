@@ -1,11 +1,47 @@
+function toggleInputFields() {
+    const inputFields = document.querySelector('.input-fields');
+    inputFields.style.display = inputFields.style.display === 'none' ? 'block' : 'none';
+}
+
+function removeEntry(index) {
+    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    storedData.splice(index, 1);
+    localStorage.setItem('workoutData', JSON.stringify(storedData));
+    fun2();
+}
+
 function fun() {
-    localStorage.setItem('name',
-        document.getElementById('name').value)
-    localStorage.setItem('password',
-        document.getElementById('password').value);
+    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    storedData.push({
+        workoutName: document.getElementById('workoutName').value,
+        sets: document.getElementById('sets').value,
+        reps: document.getElementById('reps').value,
+        date: document.getElementById('date').value
+    });
+    localStorage.setItem('workoutData', JSON.stringify(storedData));
+    document.getElementById('workoutName').value = '';
+    document.getElementById('sets').value = '';
+    document.getElementById('reps').value = '';
+    document.getElementById('date').value = '';
+    fun2();  
 }
+
 function fun2() {
-    document.getElementById("ele").innerHTML = '<h3>name: '
-        + localStorage.getItem("name") + '</h3><h3>Passward: ' +
-        localStorage.getItem('password') + '</h3>';
+    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let detailsHTML = '';
+    storedData.forEach((out, index) => {
+        detailsHTML += `<div class="detail-box">
+                            <button class="delete-button" onclick="removeEntry(${index})">-</button>
+                            <p>Workout Name: ${out.workoutName}</p>
+                            <p>Sets: ${out.sets}</p>
+                            <p>Reps: ${out.reps}</p>
+                            <p>Date: ${out.date}</p>
+                        </div>`;
+    });
+    document.getElementById("ele").innerHTML = detailsHTML;
 }
+
+
+window.onload = function() {
+    fun2();
+};
