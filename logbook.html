@@ -113,6 +113,21 @@
             display: flex;
         }
 
+        .go-back-button {
+            width: 80px;
+            height: 30px;
+            background-color: #8ba888;
+            border: 2px solid black;
+            border-radius: 5px;
+            color: black;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         @media (min-width: 767px) {
             .button {
                 height: 150px;
@@ -146,13 +161,19 @@
         <p>
             <label>Date: <input id="date" type="date" /></label>
         </p>
+
+        <p>
+            <label>Weight (kg): <input id="weight" type="number" /></label>
+        </p>
+
         <p>
             <button onclick="fun()">Submit</button>
         </p>
     </div>
 
-    
     <div id="ele"></div>
+
+    <button class="go-back-button" onclick="goBack()">Go Back</button>
 
 </body>
 </html>
