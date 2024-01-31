@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reptracker Logbook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="globalStyle.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 60px 0 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fbfbf3;
+        }
+
+        .circle-button {
+            width: 40px;
+            height: 40px;
+            background-color: #8ba888;
+            border: 2px solid black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 25px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            overflow: hidden;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0; 
+            margin-top: 3px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 0px; 
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            width: 200px;
+            height: auto;
+            border: none;
+            outline: none;
+            margin: none;
+            box-sizing: border-box;
+        }
+
+        .input-fields {
+            position: fixed;
+            top: 60px; 
+            right: 10px;
+            display: none;
+            z-index: 2;
+            background-color: #fbfbf3; 
+            border: 2px solid #8ba888; 
+            padding: 10px; 
+            border-radius: 5px;
+        }
+
+        #ele {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-top: 100px; 
+            box-sizing: border-box;
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+
+        .detail-box {
+            border: 2px solid #8ba888;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            word-wrap: break-word; 
+        }
+
+        .delete-button {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: #8ba888;
+            border: 2px solid black;
+            color: black;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .go-back-button {
+            width: 80px;
+            height: 30px;
+            background-color: #8ba888;
+            border: 2px solid black;
+            border-radius: 5px;
+            color: black;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 767px) {
+            .button {
+                height: 150px;
+                font-size: 24px;
+            }
+        }
+    </style>
+    <script src="routien.js"></script> 
+</head>
+<body>
+
+    <header>
+        <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65b0c252&is=659e4d52&hm=f24cc9b9b187d6c6a90b96f00aff86b9773d946740b4737f372042ca63c1f7b0&">
+        <div class="logo-text">Routine</div>
+    </header>
+
+    <div class="circle-button" onclick="toggleInputFields()">
+        <span>+</span>
+    </div>
+
+    <div class="input-fields">
+        <p>
+            <label>Type of workout: <input id="workoutType" /></label>
+        </p>
+
+        <p>
+            <button onclick="fun()">Submit</button>
+        </p>
+    </div>
+
+    <div id="ele"></div>
+
+    <button class="go-back-button" onclick="goBack()">Go Back</button>
+
+</body>
+</html>
