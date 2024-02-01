@@ -7,10 +7,10 @@ function removeEntry(index) {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
     storedData.splice(index, 1);
     localStorage.setItem('workoutData', JSON.stringify(storedData));
-    fun2();
+    displayEntry();
 }
 
-function fun() {
+function saveData() {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
     storedData.push({
         workoutName: document.getElementById('workoutName').value,
@@ -25,10 +25,10 @@ function fun() {
     document.getElementById('reps').value = '';
     document.getElementById('weight').value = '';
     document.getElementById('date').value = '';
-    fun2();  
+    displayEntry();  
 }
 
-function fun2() {
+function displayEntry() {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
     let detailsHTML = '';
     storedData.forEach((out, index) => {
@@ -49,5 +49,5 @@ function goBack() {
 }
 
 window.onload = function() {
-    fun2();
+    displayEntry();
 };
