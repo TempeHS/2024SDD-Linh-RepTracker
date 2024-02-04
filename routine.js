@@ -64,7 +64,11 @@ function displayEntry() {
                             <p>Type of Workout: ${out.typeOfWorkout}</p>`;
         
         if (out.workouts && out.workouts.length > 0) {
-            detailsHTML += `<p>Workouts: ${out.workouts.join(', ')}</p>`;
+            detailsHTML += `<p>Workouts:</p><ul>`;
+            out.workouts.forEach(workout => {
+                detailsHTML += `<li>${workout}</li>`;
+            });
+            detailsHTML += `</ul>`;
         }
 
         detailsHTML += `</div>`;
