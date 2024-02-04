@@ -98,7 +98,7 @@
 
         .delete-button {
             position: absolute;
-            bottom: 5px;
+            top: 5px;
             right: 5px;
             background-color: #8ba888;
             border: 2px solid black;
@@ -151,21 +151,38 @@
 
     <div class="input-fields">
         <p>
-            <label>Type of workout: <input id="workoutType" /></label>
+            <label>Day:
+                <select id="day">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+            </label>
+        </p>
+        <p>
+            <label>Type of Workout: <input id="typeOfWorkout" /></label>
         </p>
 
-        <p>
-            <label>Day: <input id="day" type="day" /></label>
-        </p>
+        <div id="workoutsSection">
+            <p>
+                <label>Add Workout: <input id="workoutName" /></label>
+                <button onclick="addWorkout()">Add</button>
+            </p>
+            <div id="workoutsList"></div>
+        </div>
 
         <p>
-            <button onclick="fun()">Submit</button>
+            <button onclick="saveData()">Submit</button>
         </p>
     </div>
 
     <div id="ele"></div>
 
-    <button class="go-back-button" onclick="goBack()">Go Back</button>
+    <button class="go-back-button" onclick="goBack()">Home</button>
 
 </body>
 </html>

@@ -7,39 +7,67 @@ function removeEntry(index) {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
     storedData.splice(index, 1);
     localStorage.setItem('workoutData', JSON.stringify(storedData));
-    fun2();
+    displayEntry();
 }
 
-function fun() {
+
+function addWorkout() {
+    const workoutNameInput = document.getElementById('workoutName');
+    const workoutList = document.getElementById('workoutsList');
+
+    if (workoutNameInput.value.trim() !== '') {
+        const workoutItem = document.createElement('div');
+        workoutItem.innerHTML = `<p>${workoutNameInput.value}</p><button onclick="removeWorkoutItem(this)">Remove</button>`;
+        workoutList.appendChild(workoutItem);
+        workoutNameInput.value = '';
+    }
+}
+
+
+function removeWorkoutItem(button) {
+    const workoutItem = button.parentNode;
+    workoutItem.parentNode.removeChild(workoutItem);
+}
+
+function saveData() {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    const day = document.getElementById('day').value;
+    const typeOfWorkout = document.getElementById('typeOfWorkout').value;
+
+    
+    const workouts = [];
+    const workoutList = document.getElementById('workoutsList').getElementsByTagName('p');
+    for (let i = 0; i < workoutList.length; i++) {
+        workouts.push(workoutList[i].innerText);
+    }
+
     storedData.push({
-        workoutName: document.getElementById('workoutType').value,
-        sets: document.getElementById('day').value,
-        reps: document.getElementById('reps').value,
-        weight: document.getElementById('weight').value,
-        date: document.getElementById('date').value
+        day: day,
+        typeOfWorkout: typeOfWorkout,
+        workouts: workouts,
     });
+
     localStorage.setItem('workoutData', JSON.stringify(storedData));
-    document.getElementById('workoutType').value = '';
-    document.getElementById('day').value = '';
-    document.getElementById('reps').value = '';
-    document.getElementById('weight').value = '';
-    document.getElementById('date').value = '';
-    fun2();  
+    document.getElementById('day').value = 'Monday'; 
+    document.getElementById('typeOfWorkout').value = ''; 
+    document.getElementById('workoutsList').innerHTML = ''; 
+    displayEntry();  
 }
 
-function fun2() {
+function displayEntry() {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
     let detailsHTML = '';
     storedData.forEach((out, index) => {
         detailsHTML += `<div class="detail-box">
                             <button class="delete-button" onclick="removeEntry(${index})">-</button>
-                            <p>Workout Type: ${out.workoutType}</p>
                             <p>Day: ${out.day}</p>
-                            <p>Reps: ${out.reps}</p>
-                            <p>Weight: ${out.weight} kg</p>
-                            <p>Date: ${out.date}</p>
-                        </div>`;
+                            <p>Type of Workout: ${out.typeOfWorkout}</p>`;
+        
+        if (out.workouts && out.workouts.length > 0) {
+            detailsHTML += `<p>Workouts: ${out.workouts.join(', ')}</p>`;
+        }
+
+        detailsHTML += `</div>`;
     });
     document.getElementById("ele").innerHTML = detailsHTML;
 }
@@ -49,5 +77,5 @@ function goBack() {
 }
 
 window.onload = function() {
-    fun2();
+    displayEntry();
 };
