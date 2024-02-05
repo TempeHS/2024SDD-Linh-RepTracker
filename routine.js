@@ -35,7 +35,6 @@ function saveData() {
     const day = document.getElementById('day').value;
     const typeOfWorkout = document.getElementById('typeOfWorkout').value;
 
-    
     const workouts = [];
     const workoutList = document.getElementById('workoutsList').getElementsByTagName('p');
     for (let i = 0; i < workoutList.length; i++) {
@@ -48,12 +47,14 @@ function saveData() {
         workouts: workouts,
     });
 
+    document.getElementById('workoutsList').innerHTML = '';
+
     localStorage.setItem('workoutData', JSON.stringify(storedData));
     document.getElementById('day').value = 'Monday'; 
     document.getElementById('typeOfWorkout').value = ''; 
-    document.getElementById('workoutsList').innerHTML = ''; 
     displayEntry();  
 }
+
 
 function displayEntry() {
     let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
