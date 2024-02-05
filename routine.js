@@ -17,7 +17,8 @@ function addWorkout() {
 
     if (workoutNameInput.value.trim() !== '') {
         const workoutItem = document.createElement('div');
-        workoutItem.innerHTML = `<p>${workoutNameInput.value}</p><button onclick="removeWorkoutItem(this)">Remove</button>`;
+        workoutItem.innerHTML = `<p>${workoutNameInput.value}</p>
+                        <button class="go-back-button" onclick="removeWorkoutItem(this)">Remove</button>`;
         workoutList.appendChild(workoutItem);
         workoutNameInput.value = '';
     }
