@@ -4,12 +4,11 @@ function toggleInputFields() {
 }
 
 function removeEntry(index) {
-    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let storedData = JSON.parse(localStorage.getItem('routineData')) || [];
     storedData.splice(index, 1);
-    localStorage.setItem('workoutData', JSON.stringify(storedData));
+    localStorage.setItem('routineData', JSON.stringify(storedData));
     displayEntry();
 }
-
 
 function addWorkout() {
     const workoutNameInput = document.getElementById('workoutName');
@@ -24,14 +23,13 @@ function addWorkout() {
     }
 }
 
-
 function removeWorkoutItem(button) {
     const workoutItem = button.parentNode;
     workoutItem.parentNode.removeChild(workoutItem);
 }
 
 function saveData() {
-    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let storedData = JSON.parse(localStorage.getItem('routineData')) || [];
     const day = document.getElementById('day').value;
     const typeOfWorkout = document.getElementById('typeOfWorkout').value;
 
@@ -49,15 +47,14 @@ function saveData() {
 
     document.getElementById('workoutsList').innerHTML = '';
 
-    localStorage.setItem('workoutData', JSON.stringify(storedData));
+    localStorage.setItem('routineData', JSON.stringify(storedData));
     document.getElementById('day').value = 'Monday'; 
     document.getElementById('typeOfWorkout').value = ''; 
     displayEntry();  
 }
 
-
 function displayEntry() {
-    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let storedData = JSON.parse(localStorage.getItem('routineData')) || [];
     let detailsHTML = '';
     storedData.forEach((out, index) => {
         detailsHTML += `<div class="detail-box">

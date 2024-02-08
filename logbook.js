@@ -4,14 +4,14 @@ function toggleInputFields() {
 }
 
 function removeEntry(index) {
-    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let storedData = JSON.parse(localStorage.getItem('logbookData')) || [];
     storedData.splice(index, 1);
-    localStorage.setItem('workoutData', JSON.stringify(storedData));
+    localStorage.setItem('logbookData', JSON.stringify(storedData));
     displayEntry();
 }
 
 function saveData() {
-    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let storedData = JSON.parse(localStorage.getItem('logbookData')) || [];
     storedData.push({
         workoutName: document.getElementById('workoutName').value,
         sets: document.getElementById('sets').value,
@@ -19,7 +19,7 @@ function saveData() {
         weight: document.getElementById('weight').value,
         date: document.getElementById('date').value
     });
-    localStorage.setItem('workoutData', JSON.stringify(storedData));
+    localStorage.setItem('logbookData', JSON.stringify(storedData));
     document.getElementById('workoutName').value = '';
     document.getElementById('sets').value = '';
     document.getElementById('reps').value = '';
@@ -29,7 +29,7 @@ function saveData() {
 }
 
 function displayEntry() {
-    let storedData = JSON.parse(localStorage.getItem('workoutData')) || [];
+    let storedData = JSON.parse(localStorage.getItem('logbookData')) || [];
     let detailsHTML = '';
     storedData.forEach((out, index) => {
         detailsHTML += `<div class="detail-box">
