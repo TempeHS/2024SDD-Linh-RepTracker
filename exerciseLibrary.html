@@ -10,12 +10,27 @@
         body {
             margin: 0;
             padding: 60px 0 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color: #fbfbf3;
+            overflow-y: auto;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        body::-webkit-scrollbar {
+            width: 0; 
+        }
+
+
+        .container {
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
         }
 
         .logo-text {
@@ -30,6 +45,7 @@
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 30px;
             margin-top: 50px;
+            margin-bottom: 50px;
         }
 
         .button {
@@ -79,19 +95,17 @@
 <body>
 
     <div class="button-container">
-        <button id="chestButton"class="button" onclick="location.href='chest.html';">CHEST</button>
-        <button id="chestButton"class="button" onclick="location.href='back.html';">BACK</button>
-        <button id="chestButton"class="button" onclick="location.href='arms.html';">ARMS</button>
-        <button id="chestButton"class="button" onclick="location.href='legs.html';">LEGS</button>
-        <button id="absButton"class="button">ABS</button>
-        <button id="cardioButton"class="button">CARDIO</button>
+        <button id="chestButton" class="button" onclick="location.href='chest.html';">CHEST</button>
+        <button id="backButton" class="button" onclick="location.href='back.html';">BACK</button>
+        <button id="armsButton" class="button" onclick="location.href='arms.html';">ARMS</button>
+        <button id="legsButton" class="button" onclick="location.href='legs.html';">LEGS</button>
+        <button id="absButton" class="button">ABS</button>
+        <button id="cardioButton" class="button">CARDIO</button>
     </div>
 
     <header>
         <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65b0c252&is=659e4d52&hm=f24cc9b9b187d6c6a90b96f00aff86b9773d946740b4737f372042ca63c1f7b0&">
         <div class="logo-text">Exercise Library</div>
     </header>
-
-    <script src="script.js"></script>
 </body>
 </html>
