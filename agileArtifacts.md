@@ -3,7 +3,7 @@
 1. ~~a database that stores the user's routine~~
 2. ~~a landing page for the routine~~
 3. ~~a landing page for the exercise library~~
-4. seperate landing pages linked with each muscle group in the exercise library's landing page
+4. ~~seperate landing pages linked with each muscle group in the exercise library's landing page~~
 
 ## Increment (what must be achieved by the end of the sprint)
 A landing page that will be linked with the exercise routine and a database that pushes data from the backend to the frontend
