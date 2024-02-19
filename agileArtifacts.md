@@ -1,8 +1,8 @@
 # Agile Artifacts
 ## Sprint backlog lists of achieveables (annotate what changes made during sprint, including data required)
-1. a database that stores the user's routine
-2. a landing page for the routine
-3. a landing page for the exercise library
+1. ~~a database that stores the user's routine~~
+2. ~~a landing page for the routine~~
+3. ~~a landing page for the exercise library~~
 4. seperate landing pages linked with each muscle group in the exercise library's landing page
 
 ## Increment (what must be achieved by the end of the sprint)
