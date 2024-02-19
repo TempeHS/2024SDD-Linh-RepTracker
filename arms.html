@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reptracker Back</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="globalStyle.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 60px 0 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fbfbf3;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0; 
+            margin-top: 2px;
+        }
+
+        .button {
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            background-color:  #8ba888;
+            color: black;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background-color: #fbfbf3;
+            z-index: 1000;
+            padding: 0px 0px 0px 0px;
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            width: 200px;
+            height: auto;
+            border: none;
+            outline: none;
+            margin: none;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 767px) {
+            .button {
+                height: 150px;
+                font-size: 24px;
+            }
+        }
+
+        .container {
+            max-width: 90%;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .container {
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }       
+
+        .exercise-box {
+            border: 2px solid #8ba888;
+            padding: 10px;
+            margin-top: 20px;
+            max-width: 300px;
+        }
+
+        .exercise {
+            font-weight: bold;
+            margin-bottom: 5px; 
+            font-size: 18px;
+        }
+
+        .muscle-target {
+            margin-bottom: 5px; 
+        }
+
+        .muscle-target strong {
+            font-weight: bold; 
+        }
+
+        .instruction {
+            margin-top: 10px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .go-back-button {
+            width: 80px;
+            height: 30px;
+            background-color: #8ba888;
+            border: 2px solid black;
+            border-radius: 5px;
+            color: black;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65b0c252&is=659e4d52&hm=f24cc9b9b187d6c6a90b96f00aff86b9773d946740b4737f372042ca63c1f7b0&">
+        <div class="logo-text">Back</div>
+    </header>
+
+    <div class="container">
+        <div class="exercise-box">
+            <div class="exercise">
+                Cable Lateral Raise
+            </div>
+            <div class="muscle-target">
+                <strong>Targeted muscle:</strong> Shoulder
+            </div>
+            <div class="instruction">
+                <p>Instruction:</p>
+                <p>Set up the cable machine with the handle being at around your quads and a D-handle attached to the cable. Stand sideways, grab the handle with one hand, slightly lean forward, and raise your arm to the side until it's parallel to the ground. Slowly lower it back down in a controlled manner. Keep your core stable and avoid any swaying movement to eliminate the use of momentum </p>
+            </div>
+        </div>
+
+        <div class="exercise-box">
+            <div class="exercise">
+                Dumbbell Shoulder Press
+            </div>
+            <div class="muscle-target">
+                <strong>Targeted muscle:</strong> Shoulder
+            </div>
+            <div class="instruction">
+                <p>Instruction:</p>
+                <p>Sit on the seat and place you feet on the pads. Have a slight bend in your knees and keep a neutral spine position. Have your shoulders down, chest out, and maintain a slight arc in your back. Slowly pull you arms to your torso, squeeze everything nice and tight, and slowly return the weight before starting your next rep.</p>
+            </div>
+        </div>
+
+        <div class="exercise-box">
+            <div class="exercise">
+                Seated Dumbbell Curls
+            </div>
+            <div class="muscle-target">
+                <strong>Targeted muscle:</strong> Bicep
+            </div>
+            <div class="instruction">
+                <p>Instruction:</p>
+                <p>Adjust the seta so that it is slightly reclined back. Sit down with both dumbbells in your hands and keep your arms in a neutral position. Start curling the dumbbell either simultaineously or alternatively and slowly release them back down to strech the muscle.</p>
+            </div>
+        </div>
+        
+        <button class="go-back-button" onclick="location.href='exerciseLibrary.html';">Home</button>
+    </div>
+</body>
+</html>
