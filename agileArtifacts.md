@@ -12,9 +12,10 @@ Landing pages that contains exercises based on what muscle group
 
 ## Sprint review (Focus on project management)
 ### What challenge did you have
-
+I had some challenges in debugging the UI of the routine page
 
 ### What did you do well
-
+Overall, I think I did pretty well for both of these function and I delivered what I said I would deliver
 
 ### What will you do different next time
+Nothing, I think challenges that I faced wasn't because of how I approached the problem and are just things you can't avoid
