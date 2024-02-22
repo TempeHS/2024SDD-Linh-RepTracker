@@ -10,20 +10,9 @@ document.getElementById("exerciseLibraryButton").addEventListener("click", funct
     window.location.href = "exerciseLibrary.html";
 });
 
-document.getElementById("logbookButton").addEventListener("click", function () {
-    window.location.href = "logbook.html";
-});
-
-document.getElementById("routineButton").addEventListener("click", function () {
-    window.location.href = "routine.html";
-});
-
-document.getElementById("exerciseLibraryButton").addEventListener("click", function () {
-    window.location.href = "exerciseLibrary.html";
-});
-
 let timerInterval;
 let timeLeft = 10; 
+let timerStarted = false;
 
 function updateTimer() {
     const circleButton = document.getElementById('startButton');
@@ -31,8 +20,9 @@ function updateTimer() {
 }
 
 function startTimer() {
-    
+    // Update button text immediately before starting the timer
     updateTimer();
+    timerStarted = true; // Indicate that the timer has started
     timerInterval = setInterval(() => {
         timeLeft--;
         updateTimer();
@@ -49,5 +39,9 @@ function formatTime(seconds) {
 }
 
 document.getElementById('startButton').addEventListener('click', () => {
-    startTimer();
+    if (!timerStarted) { 
+        startTimer();
+        
+        document.getElementById('startButton').removeEventListener('click', startTimer);
+    }
 });
