@@ -11,25 +11,35 @@ document.getElementById("exerciseLibraryButton").addEventListener("click", funct
 });
 
 let timerInterval;
-let timeLeft = 10; 
+let originalTime = 10; 
+let timeLeft = originalTime;
 let timerStarted = false;
 
 function updateTimer() {
-    const circleButton = document.getElementById('startButton');
-    circleButton.textContent = formatTime(timeLeft);
+    const timerSpan = document.getElementById('timerSpan');
+    if (timeLeft >= 0) { 
+        timerSpan.textContent = formatTime(timeLeft);
+        timeLeft--; 
+    } else {
+        clearInterval(timerInterval);
+        timerStarted = false;
+    }
 }
 
+
 function startTimer() {
-    // Update button text immediately before starting the timer
     updateTimer();
-    timerStarted = true; // Indicate that the timer has started
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimer();
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-        }
-    }, 1000);
+    timerStarted = true;
+    document.getElementById('startButton').textContent = "RESET";
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    timeLeft = originalTime;
+    updateTimer();
+    document.getElementById('startButton').textContent = "START";
+    timerStarted = false; 
 }
 
 function formatTime(seconds) {
@@ -39,9 +49,9 @@ function formatTime(seconds) {
 }
 
 document.getElementById('startButton').addEventListener('click', () => {
-    if (!timerStarted) { 
+    if (!timerStarted) {
         startTimer();
-        
-        document.getElementById('startButton').removeEventListener('click', startTimer);
+    } else {
+        resetTimer();
     }
 });

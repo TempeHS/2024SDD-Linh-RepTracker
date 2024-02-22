@@ -21,7 +21,7 @@
         .circle-button {
             width: 150px;
             height: 150px;
-            background-color: 	#8ba888;
+            background-color:  #8ba888;
             border: 2px solid black;
             border-radius: 50%;
             display: flex;
@@ -33,20 +33,21 @@
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             cursor: pointer;
             overflow: hidden;
+            margin-bottom: 20px; /* Added margin to create space below */
         }
 
         .button-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: 30px;
-            margin-top: 50px;
+            margin-top: 10px; /* Reduced margin-top for better alignment */
         }
 
         .button {
             width: 150px;
             height: 150px;
             text-align: center;
-            background-color: 	#8ba888;
+            background-color:  #8ba888;
             color: black;
             border: 2px solid black;
             border-radius: 10px;
@@ -76,6 +77,13 @@
             box-sizing: border-box;
         }
 
+        .timer-container {
+            margin-top: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
         @media (min-width: 767px) {
             .button {
                 height: 150px;
@@ -87,14 +95,16 @@
 <body>
 
     <button class="circle-button" id="startButton">START</button>
-
+    
+    <div class="timer-container" id="timerDisplay"><span id="timerSpan">00:10</span></div>
+    
     <div class="button-container">
         <button id="exerciseLibraryButton" class="button">Exercise Library</button>
         <button class="button">Timer Setting</button>
         <button id="routineButton" class="button">Routine</button>
         <button id="logbookButton" class="button">Logbook</button>
     </div>
-
+    
     <header>
         <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65b0c252&is=659e4d52&hm=f24cc9b9b187d6c6a90b96f00aff86b9773d946740b4737f372042ca63c1f7b0&">
     </header>
