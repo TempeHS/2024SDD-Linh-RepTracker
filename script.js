@@ -30,7 +30,9 @@ function updateTimer() {
 function startTimer() {
     updateTimer();
     timerStarted = true;
-    document.getElementById('startButton').textContent = "RESET";
+    if (!timerInterval) { // Change text only if timerInterval is not set (i.e., not already started)
+        document.getElementById('startButton').textContent = "RESET";
+    }
     timerInterval = setInterval(updateTimer, 1000);
 }
 
