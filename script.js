@@ -18,10 +18,12 @@ function updateTimer() {
 
 function startTimer() {
     timerStarted = true;
-    timerExpired = false; // Reset the timer expired flag
+    timerExpired = false; 
     document.getElementById('startButton').textContent = "RESET";
-    updateTimer();
-    timerInterval = setInterval(updateTimer, 1000);
+    setTimeout(() => {
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
+    }, 1000); 
 }
 
 function resetTimer() {
@@ -29,7 +31,7 @@ function resetTimer() {
     timeLeft = originalTime;
     updateTimer();
     timerStarted = false;
-    timerExpired = false; // Reset the timer expired flag
+    timerExpired = false; 
     document.getElementById('startButton').textContent = "START";
 }
 
@@ -39,9 +41,14 @@ function formatTime(seconds) {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const timerSpan = document.getElementById('timerSpan');
+    timerSpan.textContent = formatTime(originalTime);
+});
+
 document.getElementById('startButton').addEventListener('click', () => {
     if (timerExpired) {
-        resetTimer(); // If timer expired, reset it
+        resetTimer(); 
     } else {
         if (!timerStarted) {
             startTimer();
@@ -52,7 +59,7 @@ document.getElementById('startButton').addEventListener('click', () => {
 });
 
 document.getElementById("addMinute").addEventListener("click", function () {
-    originalTime += 60; // Add 60 seconds (1 minute)
+    originalTime += 60; 
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -60,8 +67,26 @@ document.getElementById("addMinute").addEventListener("click", function () {
 });
 
 document.getElementById("subtractMinute").addEventListener("click", function () {
-    if (originalTime >= 60) { // Ensure time doesn't go negative
-        originalTime -= 60; // Subtract 60 seconds (1 minute)
+    if (originalTime >= 60) { 
+        originalTime -= 60; 
+        if (!timerStarted) {
+            timeLeft = originalTime;
+            updateTimer();
+        }
+    }
+});
+
+document.getElementById("addSecond").addEventListener("click", function () {
+    originalTime += 1; 
+    if (!timerStarted) {
+        timeLeft = originalTime;
+        updateTimer();
+    }
+});
+
+document.getElementById("subtractSecond").addEventListener("click", function () {
+    if (originalTime > 0) { 
+        originalTime -= 1; 
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
