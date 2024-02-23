@@ -78,10 +78,24 @@
         }
 
         .timer-container {
-            margin-top: 10px;
+            margin-top: -15px;
             font-size: 24px;
             font-weight: bold;
             text-align: center;
+            
+        }
+
+        .timer-control {
+            width: 30px;
+            height: 30px;
+            background-color: #8ba888;
+            color: black;
+            border: 2px solid black;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px; 
         }
 
         @media (min-width: 767px) {
@@ -96,7 +110,11 @@
 
     <button class="circle-button" id="startButton">START</button>
     
-    <div class="timer-container" id="timerDisplay"><span id="timerSpan">00:10</span></div>
+    <div class="timer-container" id="timerDisplay">
+        <button id="subtractMinute" class="timer-control">-</button>
+        <span id="timerSpan">00:10</span>
+        <button id="addMinute" class="timer-control">+</button>
+    </div>
     
     <div class="button-container">
         <button id="exerciseLibraryButton" class="button">Exercise Library</button>
@@ -106,7 +124,7 @@
     </div>
     
     <header>
-        <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65b0c252&is=659e4d52&hm=f24cc9b9b187d6c6a90b96f00aff86b9773d946740b4737f372042ca63c1f7b0&">
+        <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65e82152&is=65d5ac52&hm=5238521a4304c97a9b639b71f69b1d6a3a7dbcc0a9b8e26570b5877e220ae84e&">
     </header>
     <script src="script.js"></script>
 </body>

@@ -26,14 +26,15 @@ function updateTimer() {
     }
 }
 
-
 function startTimer() {
-    updateTimer();
     timerStarted = true;
-    if (!timerInterval) { // Change text only if timerInterval is not set (i.e., not already started)
+    if (!timerInterval) { 
         document.getElementById('startButton').textContent = "RESET";
     }
-    timerInterval = setInterval(updateTimer, 1000);
+    setTimeout(() => {
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
+    }, 1000); // Delay execution by 1 second
 }
 
 function resetTimer() {
@@ -55,5 +56,23 @@ document.getElementById('startButton').addEventListener('click', () => {
         startTimer();
     } else {
         resetTimer();
+    }
+});
+
+document.getElementById("addMinute").addEventListener("click", function() {
+    originalTime += 60; // Add 60 seconds (1 minute)
+    if (!timerStarted) {
+        timeLeft = originalTime;
+        updateTimer();
+    }
+});
+
+document.getElementById("subtractMinute").addEventListener("click", function() {
+    if (originalTime >= 60) { // Ensure time doesn't go negative
+        originalTime -= 60; // Subtract 60 seconds (1 minute)
+        if (!timerStarted) {
+            timeLeft = originalTime;
+            updateTimer();
+        }
     }
 });
