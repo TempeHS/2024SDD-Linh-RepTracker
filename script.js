@@ -13,6 +13,7 @@ function updateTimer() {
         clearInterval(timerInterval);
         timerStarted = false;
         timerExpired = true;
+        notifyMe(); 
     }
 }
 
@@ -39,6 +40,30 @@ function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
+function notifyMe() {
+    if (!("Notification" in window)) {
+        
+        alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+        
+        const notification = new Notification("Timer Expired", {
+            body: "The countdown timer has reached 0.",
+        });
+        
+    } else if (Notification.permission !== "denied") {
+        
+        Notification.requestPermission().then((permission) => {
+            
+            if (permission === "granted") {
+                const notification = new Notification("Timer Expired", {
+                    body: "The countdown timer has reached 0.",
+                });
+                
+            }
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
