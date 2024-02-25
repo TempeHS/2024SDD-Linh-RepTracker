@@ -44,24 +44,41 @@ function formatTime(seconds) {
 
 function notifyMe() {
     if (!("Notification" in window)) {
-        
         alert("This browser does not support desktop notification");
     } else if (Notification.permission === "granted") {
-        
         const notification = new Notification("Timer Expired", {
             body: "The countdown timer has reached 0.",
         });
-        
     } else if (Notification.permission !== "denied") {
-        
         Notification.requestPermission().then((permission) => {
-            
             if (permission === "granted") {
                 const notification = new Notification("Timer Expired", {
                     body: "The countdown timer has reached 0.",
                 });
-                
             }
+        });
+    }
+
+    // For mobile devices
+    // Check if the browser supports service workers
+    if ("serviceWorker" in navigator && "PushManager" in window) {
+        navigator.serviceWorker.register("/service-worker.js").then(function(registration) {
+            // Register the service worker and subscribe to push notifications
+            registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: 'YOUR_PUBLIC_KEY_FROM_FIREBASE',
+            }).then(function(subscription) {
+                // Send a push notification
+                fetch("/send-notification", {
+                    method: "POST",
+                    body: JSON.stringify(subscription),
+                    headers: {
+                        "content-type": "application/json"
+                    }
+                });
+            }).catch(function(err) {
+                console.error("Failed to subscribe the user: ", err);
+            });
         });
     }
 }
