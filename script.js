@@ -13,18 +13,26 @@ function updateTimer() {
         clearInterval(timerInterval);
         timerStarted = false;
         timerExpired = true;
-        notifyMe(); // Trigger push notification
+        if ('serviceWorker' in navigator && Notification.permission === 'granted') {
+          navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification('RepTracker Timer Ended', {
+              body: 'Your timer has ended!',
+              icon: '/path/to/icon.png', // Replace with path to your app's icon
+              badge: '/path/to/badge.png' // Replace with path to your app's badge
+            });
+          });
+        }
     }
 }
 
 function startTimer() {
     timerStarted = true;
-    timerExpired = false;
+    timerExpired = false; 
     document.getElementById('startButton').textContent = "RESET";
     setTimeout(() => {
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
-    }, 1000);
+    }, 1000); 
 }
 
 function resetTimer() {
@@ -32,7 +40,7 @@ function resetTimer() {
     timeLeft = originalTime;
     updateTimer();
     timerStarted = false;
-    timerExpired = false;
+    timerExpired = false; 
     document.getElementById('startButton').textContent = "START";
 }
 
@@ -45,11 +53,24 @@ function formatTime(seconds) {
 document.addEventListener('DOMContentLoaded', function() {
     const timerSpan = document.getElementById('timerSpan');
     timerSpan.textContent = formatTime(originalTime);
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/serviceWorker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.error('Service Worker registration failed:', error);
+                });
+        });
+    }
 });
 
 document.getElementById('startButton').addEventListener('click', () => {
     if (timerExpired) {
-        resetTimer();
+        resetTimer(); 
     } else {
         if (!timerStarted) {
             startTimer();
@@ -60,7 +81,7 @@ document.getElementById('startButton').addEventListener('click', () => {
 });
 
 document.getElementById("addMinute").addEventListener("click", function () {
-    originalTime += 60;
+    originalTime += 60; 
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -68,8 +89,8 @@ document.getElementById("addMinute").addEventListener("click", function () {
 });
 
 document.getElementById("subtractMinute").addEventListener("click", function () {
-    if (originalTime >= 60) {
-        originalTime -= 60;
+    if (originalTime >= 60) { 
+        originalTime -= 60; 
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
@@ -78,7 +99,7 @@ document.getElementById("subtractMinute").addEventListener("click", function () 
 });
 
 document.getElementById("addSecond").addEventListener("click", function () {
-    originalTime += 1;
+    originalTime += 1; 
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -86,8 +107,8 @@ document.getElementById("addSecond").addEventListener("click", function () {
 });
 
 document.getElementById("subtractSecond").addEventListener("click", function () {
-    if (originalTime > 0) {
-        originalTime -= 1;
+    if (originalTime > 0) { 
+        originalTime -= 1; 
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
@@ -106,20 +127,3 @@ document.getElementById("routineButton").addEventListener("click", function () {
 document.getElementById("exerciseLibraryButton").addEventListener("click", function () {
     window.location.href = "exerciseLibrary.html";
 });
-
-// Function to request permission and trigger push notification
-function notifyMe() {
-    if ('serviceWorker' in navigator && 'PushManager' in window) {
-        Notification.requestPermission().then(function(permission) {
-            if (permission === 'granted') {
-                navigator.serviceWorker.ready.then(function(registration) {
-                    registration.showNotification('Timer Expired', {
-                        body: 'Your timer has expired!',
-                        icon: 'path/to/your/icon.png',
-                        badge: 'path/to/your/badge.png'
-                    });
-                });
-            }
-        });
-    }
-}
