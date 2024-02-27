@@ -130,8 +130,21 @@
     </div>
     
     <header>
-        <img src="https://cdn.discordapp.com/attachments/1127187197557211288/1194549934939197470/image.png?ex=65e82152&is=65d5ac52&hm=5238521a4304c97a9b639b71f69b1d6a3a7dbcc0a9b8e26570b5877e220ae84e&">
+        <img src="images/logo2.png">
     </header>
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('serviceWorker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

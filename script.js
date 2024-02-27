@@ -13,18 +13,18 @@ function updateTimer() {
         clearInterval(timerInterval);
         timerStarted = false;
         timerExpired = true;
-        notifyMe(); 
+        notifyMe(); // Trigger push notification
     }
 }
 
 function startTimer() {
     timerStarted = true;
-    timerExpired = false; 
+    timerExpired = false;
     document.getElementById('startButton').textContent = "RESET";
     setTimeout(() => {
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
-    }, 1000); 
+    }, 1000);
 }
 
 function resetTimer() {
@@ -32,7 +32,7 @@ function resetTimer() {
     timeLeft = originalTime;
     updateTimer();
     timerStarted = false;
-    timerExpired = false; 
+    timerExpired = false;
     document.getElementById('startButton').textContent = "START";
 }
 
@@ -42,47 +42,6 @@ function formatTime(seconds) {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
-function notifyMe() {
-    if (!("Notification" in window)) {
-        alert("This browser does not support desktop notification");
-    } else if (Notification.permission === "granted") {
-        const notification = new Notification("Timer Expired", {
-            body: "The countdown timer has reached 0.",
-        });
-    } else if (Notification.permission !== "denied") {
-        Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-                const notification = new Notification("Timer Expired", {
-                    body: "The countdown timer has reached 0.",
-                });
-            }
-        });
-    }
-
-    // For mobile devices
-    // Check if the browser supports service workers
-    if ("serviceWorker" in navigator && "PushManager" in window) {
-        navigator.serviceWorker.register("/service-worker.js").then(function(registration) {
-            // Register the service worker and subscribe to push notifications
-            registration.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: 'YOUR_PUBLIC_KEY_FROM_FIREBASE',
-            }).then(function(subscription) {
-                // Send a push notification
-                fetch("/send-notification", {
-                    method: "POST",
-                    body: JSON.stringify(subscription),
-                    headers: {
-                        "content-type": "application/json"
-                    }
-                });
-            }).catch(function(err) {
-                console.error("Failed to subscribe the user: ", err);
-            });
-        });
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     const timerSpan = document.getElementById('timerSpan');
     timerSpan.textContent = formatTime(originalTime);
@@ -90,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('startButton').addEventListener('click', () => {
     if (timerExpired) {
-        resetTimer(); 
+        resetTimer();
     } else {
         if (!timerStarted) {
             startTimer();
@@ -101,7 +60,7 @@ document.getElementById('startButton').addEventListener('click', () => {
 });
 
 document.getElementById("addMinute").addEventListener("click", function () {
-    originalTime += 60; 
+    originalTime += 60;
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -109,8 +68,8 @@ document.getElementById("addMinute").addEventListener("click", function () {
 });
 
 document.getElementById("subtractMinute").addEventListener("click", function () {
-    if (originalTime >= 60) { 
-        originalTime -= 60; 
+    if (originalTime >= 60) {
+        originalTime -= 60;
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
@@ -119,7 +78,7 @@ document.getElementById("subtractMinute").addEventListener("click", function () 
 });
 
 document.getElementById("addSecond").addEventListener("click", function () {
-    originalTime += 1; 
+    originalTime += 1;
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -127,8 +86,8 @@ document.getElementById("addSecond").addEventListener("click", function () {
 });
 
 document.getElementById("subtractSecond").addEventListener("click", function () {
-    if (originalTime > 0) { 
-        originalTime -= 1; 
+    if (originalTime > 0) {
+        originalTime -= 1;
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
@@ -147,3 +106,20 @@ document.getElementById("routineButton").addEventListener("click", function () {
 document.getElementById("exerciseLibraryButton").addEventListener("click", function () {
     window.location.href = "exerciseLibrary.html";
 });
+
+// Function to request permission and trigger push notification
+function notifyMe() {
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+                navigator.serviceWorker.ready.then(function(registration) {
+                    registration.showNotification('Timer Expired', {
+                        body: 'Your timer has expired!',
+                        icon: 'path/to/your/icon.png',
+                        badge: 'path/to/your/badge.png'
+                    });
+                });
+            }
+        });
+    }
+}
