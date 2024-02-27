@@ -54,6 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const timerSpan = document.getElementById('timerSpan');
     timerSpan.textContent = formatTime(originalTime);
 
+    // Request notification permission
+    if ('Notification' in window) {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+            }
+        });
+    }
+
     // Register service worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
