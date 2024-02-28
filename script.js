@@ -3,9 +3,27 @@ let originalTime = 10;
 let timeLeft = originalTime;
 let timerStarted = false;
 let timerExpired = false;
-let audio; // Declare audio globally
 
-const soundPath = './sounds/alarm.mp3';
+function notifyMe() {
+    if (!("Notification" in window)) {
+        // Check if the browser supports notifications
+        alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+        // Check whether notification permissions have already been granted;
+        // if so, create a notification
+        const notification = new Notification("Your timer has ended");
+        // …
+    } else if (Notification.permission !== "denied") {
+        // We need to ask the user for permission
+        Notification.requestPermission().then((permission) => {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                const notification = new Notification("Timer Expired");
+                // …
+            }
+        });
+    }
+}
 
 function updateTimer() {
     const timerSpan = document.getElementById('timerSpan');
@@ -16,9 +34,9 @@ function updateTimer() {
         clearInterval(timerInterval);
         timerStarted = false;
         timerExpired = true;
-        // Play a sound when the timer ends
-        audio = new Audio(soundPath); // Initialize audio globally
-        audio.play();
+
+        // Send notification when the timer ends
+        notifyMe();
     }
 }
 
@@ -39,12 +57,6 @@ function resetTimer() {
     timerStarted = false;
     timerExpired = false;
     document.getElementById('startButton').textContent = "START";
-    
-    // Stop and reset the alarm sound if it's playing
-    if (audio && !audio.paused) {
-        audio.pause();
-        audio.currentTime = 0;
-    }
 }
 
 function formatTime(seconds) {
@@ -58,7 +70,14 @@ document.addEventListener('DOMContentLoaded', function () {
     timerSpan.textContent = formatTime(originalTime);
 
     // Request notification permission (if needed)
-
+    if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                const notification = new Notification("Notification permissions granted!");
+            }
+        });
+    }
 });
 
 document.getElementById('startButton').addEventListener('click', () => {
