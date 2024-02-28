@@ -3,6 +3,7 @@ let originalTime = 10;
 let timeLeft = originalTime;
 let timerStarted = false;
 let timerExpired = false;
+let audio; // Declare audio globally
 
 const soundPath = './sounds/alarm.mp3';
 
@@ -16,7 +17,7 @@ function updateTimer() {
         timerStarted = false;
         timerExpired = true;
         // Play a sound when the timer ends
-        const audio = new Audio(soundPath);
+        audio = new Audio(soundPath); // Initialize audio globally
         audio.play();
     }
 }
@@ -38,6 +39,12 @@ function resetTimer() {
     timerStarted = false;
     timerExpired = false;
     document.getElementById('startButton').textContent = "START";
+    
+    // Stop and reset the alarm sound if it's playing
+    if (audio && !audio.paused) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
 }
 
 function formatTime(seconds) {
@@ -50,27 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const timerSpan = document.getElementById('timerSpan');
     timerSpan.textContent = formatTime(originalTime);
 
-    // Request notification permission
-    if ('Notification' in window) {
-        Notification.requestPermission().then(function (permission) {
-            if (permission === 'granted') {
-                console.log('Notification permission granted.');
-            }
-        });
-    }
+    // Request notification permission (if needed)
 
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/serviceWorker.js')
-                .then(function (registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch(function (error) {
-                    console.error('Service Worker registration failed:', error);
-                });
-        });
-    }
 });
 
 document.getElementById('startButton').addEventListener('click', () => {
