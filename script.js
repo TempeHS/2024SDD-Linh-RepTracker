@@ -4,6 +4,8 @@ let timeLeft = originalTime;
 let timerStarted = false;
 let timerExpired = false;
 
+const soundPath = './sounds/alarm.mp3';
+
 function updateTimer() {
     const timerSpan = document.getElementById('timerSpan');
     if (timeLeft >= 0) {
@@ -13,26 +15,20 @@ function updateTimer() {
         clearInterval(timerInterval);
         timerStarted = false;
         timerExpired = true;
-        if ('serviceWorker' in navigator && Notification.permission === 'granted') {
-          navigator.serviceWorker.ready.then(function(registration) {
-            registration.showNotification('RepTracker Timer Ended', {
-              body: 'Your timer has ended!',
-              icon: '/path/to/icon.png', // Replace with path to your app's icon
-              badge: '/path/to/badge.png' // Replace with path to your app's badge
-            });
-          });
-        }
+        // Play a sound when the timer ends
+        const audio = new Audio(soundPath);
+        audio.play();
     }
 }
 
 function startTimer() {
     timerStarted = true;
-    timerExpired = false; 
+    timerExpired = false;
     document.getElementById('startButton').textContent = "RESET";
     setTimeout(() => {
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
-    }, 1000); 
+    }, 1000);
 }
 
 function resetTimer() {
@@ -40,7 +36,7 @@ function resetTimer() {
     timeLeft = originalTime;
     updateTimer();
     timerStarted = false;
-    timerExpired = false; 
+    timerExpired = false;
     document.getElementById('startButton').textContent = "START";
 }
 
@@ -50,13 +46,13 @@ function formatTime(seconds) {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const timerSpan = document.getElementById('timerSpan');
     timerSpan.textContent = formatTime(originalTime);
 
     // Request notification permission
     if ('Notification' in window) {
-        Notification.requestPermission().then(function(permission) {
+        Notification.requestPermission().then(function (permission) {
             if (permission === 'granted') {
                 console.log('Notification permission granted.');
             }
@@ -65,12 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Register service worker
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             navigator.serviceWorker.register('/serviceWorker.js')
-                .then(function(registration) {
+                .then(function (registration) {
                     console.log('Service Worker registered with scope:', registration.scope);
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.error('Service Worker registration failed:', error);
                 });
         });
@@ -79,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('startButton').addEventListener('click', () => {
     if (timerExpired) {
-        resetTimer(); 
+        resetTimer();
     } else {
         if (!timerStarted) {
             startTimer();
@@ -90,7 +86,7 @@ document.getElementById('startButton').addEventListener('click', () => {
 });
 
 document.getElementById("addMinute").addEventListener("click", function () {
-    originalTime += 60; 
+    originalTime += 60;
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -98,8 +94,8 @@ document.getElementById("addMinute").addEventListener("click", function () {
 });
 
 document.getElementById("subtractMinute").addEventListener("click", function () {
-    if (originalTime >= 60) { 
-        originalTime -= 60; 
+    if (originalTime >= 60) {
+        originalTime -= 60;
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
@@ -108,7 +104,7 @@ document.getElementById("subtractMinute").addEventListener("click", function () 
 });
 
 document.getElementById("addSecond").addEventListener("click", function () {
-    originalTime += 1; 
+    originalTime += 1;
     if (!timerStarted) {
         timeLeft = originalTime;
         updateTimer();
@@ -116,8 +112,8 @@ document.getElementById("addSecond").addEventListener("click", function () {
 });
 
 document.getElementById("subtractSecond").addEventListener("click", function () {
-    if (originalTime > 0) { 
-        originalTime -= 1; 
+    if (originalTime > 0) {
+        originalTime -= 1;
         if (!timerStarted) {
             timeLeft = originalTime;
             updateTimer();
