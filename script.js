@@ -147,3 +147,7 @@ document.getElementById("routineButton").addEventListener("click", function () {
 document.getElementById("exerciseLibraryButton").addEventListener("click", function () {
     window.location.href = "exerciseLibrary.html";
 });
+
+document.getElementById("documentationButton").addEventListener("click", function () {
+    window.location.href = "documentation.html";
+});
