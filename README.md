@@ -11,3 +11,5 @@ As stated in the name, the purpose of the RepTracker is to allow users to keep a
 **Routine:** This feature that allow users to keep record of their routine and what workouts they should be doing for that day. 
 
 **Exercise Library:** This feature is a provided list of some workouts for specific muscle groups. The exercise available will have a picture of it and a brief instruction on how to perform them. 
+
+**APIs used:** My app uses the notification API which sends a notification to your desktop device when the timer ends. It also uses a web storage API which allow the user the store their workout information onto the local storage of their device. 
