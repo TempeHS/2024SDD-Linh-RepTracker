@@ -5,7 +5,7 @@ As stated in the name, the purpose of the RepTracker is to allow users to keep a
 
 ## Features
 **Rest timer:** This is a simple timer located on the main screen. This timer will have to be manually started by user's and once te timer ends, it will send a notification to the user's phone to allow the user's to know that their rest time has ended and should start their next set. The duration of the timer can be changed by the user to meet their desired rest duration. 
-![Timer](C:\Users\Bobby\OneDrive - NSW Department of Education\Documents\GitHub\2024SDD-RepTracker-MajorProject\images\timer.png)
+![Timer](images/timer.png)
 
 **Logbook:** This is a feature that allow users to keep a record of their progress such as numbers of reps and sets for a workout, as well as the date that the workout was completed on.
 
