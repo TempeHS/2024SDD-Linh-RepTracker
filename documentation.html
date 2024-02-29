@@ -3,41 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reptracker Chest</title>
+    <title>Reptracker documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="globalStyle.css">
     <style>
         body {
             margin: 0;
             padding: 60px 0 0;
-            height: 100vh;
+            min-height: 100vh; /* Change height to min-height */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             background-color: #fbfbf3;
-        }
-
-        .logo-text {
-            font-size: 22px;
-            font-weight: bold;
-            margin: 0; 
-            margin-top: 2px;
-        }
-
-        .button {
-            width: 150px;
-            height: 150px;
-            text-align: center;
-            background-color:  #8ba888;
-            color: black;
-            border: 2px solid black;
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            cursor: pointer;
-            overflow: hidden;
         }
 
         header {
@@ -61,58 +39,40 @@
             box-sizing: border-box;
         }
 
-        @media (min-width: 767px) {
-            .button {
-                height: 150px;
-                font-size: 24px;
-            }
-        }
-
         .container {
             max-width: 90%;
-            overflow: auto;
+            margin-top: 0px; 
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-bottom: 40px;
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-top: 60px; /* Add padding to accommodate scrollbar */
         }
 
-
-        .container::-webkit-scrollbar {
-            display: none;
-        }
-
-
-        .container {
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-        }       
-
-        .exercise-box {
+        .bordered-container {
             border: 2px solid #8ba888;
-            padding: 10px;
+            padding: 20px;
             margin-top: 20px;
-            max-width: 300px;
+            max-width: 500px;
         }
 
-        .exercise {
+        .bordered-container h2 {
             font-weight: bold;
-            margin-bottom: 5px; 
+            margin-bottom: 10px;
             font-size: 18px;
         }
 
-        .muscle-target {
-            margin-bottom: 5px; 
-        }
-
-        .muscle-target strong {
-            font-weight: bold; 
-        }
-
-        .instruction {
-            margin-top: 10px;
-            text-align: left;
+        .bordered-container p {
+            margin-top: 0;
             line-height: 1.5;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0; 
+            margin-top: 2px;
         }
 
         .go-back-button {
@@ -123,7 +83,8 @@
             border-radius: 5px;
             color: black;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 40px;
             font-size: 14px;
             display: flex;
             align-items: center;
@@ -131,55 +92,42 @@
             font-weight: bold;
         }
 
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+       
+        .container {
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+
+
     </style>
 </head>
 <body>
     <header>
         <img src="images/logo2.png">
-        <div class="logo-text">Chest</div>
+        <div class="logo-text">Documentation</div>
     </header>
 
     <div class="container">
-        <div class="exercise-box">
-            <div class="exercise">
-                Flat Bench Dumbbell Press
-            </div>
-            <div class="muscle-target">
-                <strong>Targeted muscle:</strong> Middle chest, tricep
-            </div>
-            <div class="instruction">
-                <p>Instruction:</p>
-                <p>Lie on a flat bench holding a dumbbell in each hand with an overhand grip. Start by holding the dumbbells slightly wider than shoulder width apart above your shoulders. Your palms should be facing forward. Bend your elbows until they are at a 45 degree angle and slowly lower the dumbbell followed by a quick push back up.</p>
-            </div>
+        <div class="bordered-container">
+            <h2>How does the timer work?</h2>
+            <p>Adjust the timer to your needs with the added buttons next to the timer and start it whenever you like. A notification should be sent to your desktop device once the timer ends if you have allowed notifications.</p>
         </div>
 
-        <div class="exercise-box">
-            <div class="exercise">
-                Incline Dumbbell Press
-            </div>
-            <div class="muscle-target">
-                <strong>Targeted muscle:</strong> Upper chest, tricep
-            </div>
-            <div class="instruction">
-                <p>Instruction:</p>
-                <p>Lie on a slightly inclined bench holding a dumbbell in each hand with an overhand grip. Start by holding the dumbbells slightly wider than shoulder width apart above your shoulders. Your palms should be facing forward. Bend your elbows until they are at a 45 degree angle and slowly lower the dumbbell followed by a quick push back up.</p>
-            </div>
+        <div class="bordered-container">
+            <h2>What is the routine function and how does it work?</h2>
+            <p>The routine function allows you to keep track of your split/workout routine. To get started, click on the plus in the top right corner and fill in the information. Click on the submit button when you are done and it should appear on the screen. This can be removed by clicking on the minus button.</p>
         </div>
 
-        <div class="exercise-box">
-            <div class="exercise">
-                Cabel Fly
-            </div>
-            <div class="muscle-target">
-                <strong>Targeted muscle:</strong> Middle chest
-            </div>
-            <div class="instruction">
-                <p>Instruction:</p>
-                <p>Set the cables so they're just above head height and attach single handles to both. Face away from the machine and, gripping both handles, step forward into a staggered stance. Squeeze the chest muscles and press your arms forward and down in an arc direction until the handles meet back in front of the chest.</p>
-            </div>
+        <div class="bordered-container">
+            <h2>What is the logbook function and how does it work?</h2>
+            <p>The logbook function allows you to keep record of your workout information such as your reps and set for a specific exercise. Click on the plus button in the top right to get, enter in all the information and click submit when you're done. These entires can all be removed by clicking the minus button.</p>
         </div>
-        
-        <button class="go-back-button" onclick="location.href='exerciseLibrary.html';">Home</button>
     </div>
+
+    <button class="go-back-button" onclick="location.href='index.html';">Home</button>
 </body>
 </html>
