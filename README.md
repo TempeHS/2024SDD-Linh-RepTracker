@@ -10,8 +10,18 @@ As stated in the name, the purpose of the RepTracker is to allow users to keep a
 
 **Logbook:** This is a feature that allow users to keep a record of their progress such as numbers of reps and sets for a workout, as well as the date that the workout was completed on.
 
+![logbook](images/logbook.png)
+
 **Routine:** This feature that allow users to keep record of their routine and what workouts they should be doing for that day. 
 
+![routine](images/routine.png)
+
 **Exercise Library:** This feature is a provided list of some workouts for specific muscle groups. The exercise available will have a picture of it and a brief instruction on how to perform them. 
+
+![library](images/library.png) ![chest](images/chest.png)
+
+**User documentation:** This page is to guide new user's. Within it are simple instruction on how to use the main function of the app. 
+
+![documentation](images/documentation.png)
 
 **APIs used:** My app uses the notification API which sends a notification to your desktop device when the timer ends. It also uses a web storage API which allow the user the store their workout information onto the local storage of their device. 
