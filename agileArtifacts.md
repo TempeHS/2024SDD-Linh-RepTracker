@@ -15,6 +15,7 @@ A landing page for the user documentation which guides the user through the app
 
 ## Sprint review (Focus on project management)
 ### What challenge did you have
+<<<<<<< HEAD
 I had challanges with getting the notification to work on mobile devices. I was not able to complete this so the app can now only send notification to desktop devices.
 
 ### What did you do well
@@ -22,3 +23,12 @@ I think I did well in finding and implementing a solution to my problem such as 
 
 ### What will you do different next time
 I will spend less time on a problem that I can't solve and move on to something else then come back to the previous problem if I have time.
+=======
+I had some challenges in debugging the UI of the routine page
+
+### What did you do well
+Overall, I think I did pretty well for both of these function and I delivered what I said I would deliver
+
+### What will you do different next time
+Nothing, I think challenges that I faced wasn't because of how I approached the problem and are just things you can't avoid
+>>>>>>> sprint0.06

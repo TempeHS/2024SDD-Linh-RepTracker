@@ -4,7 +4,7 @@
 As stated in the name, the purpose of the RepTracker is to allow users to keep a record of their gym progress (reps and sets for a specific workout, the date of when they did the workout). This may seem little, but is actually very useful as it can inform user's whether they are making progress or not. 
 
 ## Features
-**Rest timer:** This is a simple timer located on the main screen. This timer will have to be manually started by user's and once te timer ends, it will send a notification to the user's phone to allow the user's to know that their rest time has ended and should start their next set. The duration of the timer can be changed by the user to meet their desired rest duration. 
+**Rest timer:** This is a simple timer located on the main screen. This timer will have to be manually started by user's and once te timer ends, it will send a notification to the user's desktop devices to allow the user's to know that their rest time has ended and should start their next set. The duration of the timer can be changed by the user to meet their desired rest duration. 
 
 ![Timer](images/timer.png)
 
@@ -25,3 +25,4 @@ As stated in the name, the purpose of the RepTracker is to allow users to keep a
 ![documentation](images/documentation.png)
 
 **APIs used:** My app uses the notification API which sends a notification to your desktop device when the timer ends. It also uses a web storage API which allow the user the store their workout information onto the local storage of their device. 
+
